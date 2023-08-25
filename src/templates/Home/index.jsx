@@ -49,7 +49,7 @@ export class Home extends Component {
   }
     
   render() {
-    const{ posts, page, postsPerPage, allPosts, searchValue } = this.state; // Atribuição via desestruturação.
+    const{ posts, allPosts, searchValue } = this.state; // Atribuição via desestruturação.
     const noMorePosts = posts.length >= 99
 
     const filteredPosts = !!searchValue ? allPosts.filter(post => {
