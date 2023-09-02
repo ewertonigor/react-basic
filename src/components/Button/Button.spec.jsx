@@ -10,7 +10,7 @@ describe('<Button />', () => {
         expect(button).toBeInTheDocument();
     });
 
-    it('should call function on button click"', () => {
+    it('should call function on button click', () => {
         const fn = jest.fn(); // cria uma Mock função
         render(<Button text="Load more" onClick={fn}/>);
 
@@ -22,7 +22,7 @@ describe('<Button />', () => {
 
     });
 
-    it('should be disabled when disabled is true"', () => {
+    it('should be disabled when disabled is true', () => {
         render(<Button text="Load more" disabled={true}/>);
 
         const button = screen.getByRole("button", { name: /load more/i })
@@ -33,12 +33,23 @@ describe('<Button />', () => {
 
     });
 
-    it('should be enabled when disabled is false"', () => {
+    it('should be enabled when disabled is false', () => {
         render(<Button text="Load more" disabled={false}/>);
 
         const button = screen.getByRole("button", { name: /load more/i })
 
         userEvent.click(button)
+
+        expect(button).toBeEnabled();
+
+    });
+
+    it('should match snapshot', () => {
+        render(<Button text="Load more" disabled={false}/>);
+
+        const button = screen.getByRole("button", { name: /load more/i });
+
+        userEvent.click(button);
 
         expect(button).toBeEnabled();
 
